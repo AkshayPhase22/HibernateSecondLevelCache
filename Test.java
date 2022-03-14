@@ -17,6 +17,7 @@ public class Test {
 
 		sf = HibUtil.getInstance();
 		Session ses = sf.openSession();
+		System.out.println("open first session...........");
 		Transaction tx = ses.beginTransaction();
 
 //		Answers ans = new Answers();
@@ -86,17 +87,18 @@ public class Test {
 		Question q1 = (Question) ses.get(Question.class, 1);
 		System.out.println(q1.getQue_id());
 		System.out.println(q1.getQuestion());
-		
+		ses.close();
+		System.out.println("First session closed");
 		
 
-		ses.close();
-		
 		Session ses1=sf.openSession();
+		System.out.println("open second session...........");
 		Question q2 = (Question) ses1.get(Question.class, 2);
 		System.out.println(q2.getQue_id());
 		System.out.println(q2.getQuestion());
 		ses1.close();
-		
+		System.out.println("second session closed");
+
 		
 		System.out.println("done");
 
